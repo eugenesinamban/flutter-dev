@@ -27,6 +27,7 @@ RUN wget -O flutter_linux_v1.12.13+hotfix.9-stable.tar.xz https://storage.google
 RUN tar -xf /home/developer/flutter_linux_v1.12.13+hotfix.9-stable.tar.xz \
     && rm /home/developer/flutter_linux_v1.12.13+hotfix.9-stable.tar.xz
 ENV PATH "$PATH:/home/developer/flutter/bin"
+ENV PATH "$PATH:/home/developer/Android/Sdk/platform-tools"
 
 # Run basic check to download Dark SDK
 RUN flutter doctor
