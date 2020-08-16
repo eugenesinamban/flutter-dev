@@ -10,6 +10,7 @@ WORKDIR /home/developer
 
 # Prepare Android directories and system variables
 RUN mkdir -p Android/Sdk
+RUN mkdir flutter
 ENV ANDROID_SDK_ROOT /home/developer/Android/Sdk
 RUN mkdir -p .android && touch .android/repositories.cfg
 
@@ -21,7 +22,10 @@ RUN cd Android/Sdk/tools/bin && yes | ./sdkmanager --licenses
 RUN cd Android/Sdk/tools/bin && ./sdkmanager "build-tools;29.0.2" "patcher;v4" "platform-tools" "platforms;android-29" "sources;android-29"
 
 # Download Flutter SDK
-RUN git clone https://github.com/flutter/flutter.git
+# RUN git clone https://github.com/flutter/flutter.git
+RUN wget -O flutter_linux_v1.12.13+hotfix.9-stable.tar.xz https://storage.googleapis.com/flutter_infra/releases/stable/linux/flutter_linux_v1.12.13+hotfix.9-stable.tar.xz
+RUN tar -xf /home/developer/flutter_linux_v1.12.13+hotfix.9-stable.tar.xz \
+    && rm /home/developer/flutter_linux_v1.12.13+hotfix.9-stable.tar.xz
 ENV PATH "$PATH:/home/developer/flutter/bin"
 
 # Run basic check to download Dark SDK
